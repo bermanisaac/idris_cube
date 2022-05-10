@@ -1,5 +1,6 @@
 module Group
 
+public export
 interface Group g where
     times : g -> g -> g
     e : g
