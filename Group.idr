@@ -20,14 +20,18 @@ Group () where
     eProofL = \x => Refl
     invProofL = unitIsDumb
 
-rtimes : (Group g) => g -> g -> g
-rtimes a b = Group.times b a 
 
 rmultEq : (Group g) => (a, b, c : g) -> a = b -> times a c = times b c
 rmultEq a b c eq = cong {f = (\y => times y c)} eq
 
-eProofR : (Group g) => (a : g) -> times a Group.e = a
-eProofR a = ?todo
+{- eProofR : (Group g) => (a : g) -> times a Group.e = a
+eProofR a = trans (trans (trans
+                (cong {f = (\x => times a x)} (sym $ invProofL a)) -- a e = a (a' a)
+                (sym $ assocProof a (inv a) a))                    -- a (a' a) = (a a') a
+                (cong {f = (\x => times x a)} (invProofL a)))      -- (a a') a = e a
+                (eProofL a)                                        -- e a = a  
+
+-}
 
 --invProofR : (Group g) => (a : g) -> times a (inv a) = Group.e
 --invProofR a = 
@@ -37,7 +41,7 @@ TwiceInvNeutral a = trans (trans (trans (trans
                         (sym $ eProofL a)                                         -- a = e a
                         (sym (cong {f = (\x => times x a)} (invProofL (inv a))))) -- e a = (a'' a') a 
                         (assocProof (inv (inv a)) (inv a) a))                     -- (a'' a') a = a'' (a' a) 
-                        (cong {f = (\x => times (inv (inv a)) x)} (invProofL a)))   -- a'' (a' a) = a'' e
+                        (cong {f = (\x => times (inv (inv a)) x)} (invProofL a))) -- a'' (a' a) = a'' e
                         (eProofR (inv (inv a)))                                   -- a'' e = a''
 
 
