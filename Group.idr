@@ -23,22 +23,22 @@ Group () where
 rtimes : (Group g) => g -> g -> g
 rtimes a b = Group.times b a 
 
-rmultEq : (Group g) => (a, b, c : g) -> b = c -> times b a = times c a
-rmultEq a b c eq = ?pain 
+rmultEq : (Group g) => (a, b, c : g) -> a = b -> times a c = times b c
+rmultEq a b c eq = cong {f = (\y => times y c)} eq
 
-
-
-
-
-
+eProofR : (Group g) => (a : g) -> times a Group.e = a
+eProofR a = ?todo
 
 --invProofR : (Group g) => (a : g) -> times a (inv a) = Group.e
 --invProofR a = 
 
---TwiceInvNeutral : (Group g) => (a : g) -> a = inv (inv a) 
-
-
-
+TwiceInvNeutral : (Group g) => (a : g) -> a = inv (inv a) 
+TwiceInvNeutral a = trans (trans (trans (trans
+                        (sym $ eProofL a)                                         -- a = e a
+                        (sym (cong {f = (\x => times x a)} (invProofL (inv a))))) -- e a = (a'' a') a 
+                        (assocProof (inv (inv a)) (inv a) a))                     -- (a'' a') a = a'' (a' a) 
+                        (cong {f = (\x => times (inv (inv a)) x)} (invProofL a)))   -- a'' (a' a) = a'' e
+                        (eProofR (inv (inv a)))                                   -- a'' e = a''
 
 
 --tin_1 : (Group g) => (a : g) -> (rtimes a) Group.e  = (rtimes a) (times (inv (inv a)) (inv a))
@@ -50,20 +50,6 @@ rmultEq a b c eq = ?pain
 
 
 -- aa' = eaa' =  a''a'aa' = a''a' = e
-
-eProofR : (Group g) => (a : g) -> times a Group.e = a
-eProofR a = ?epr 
-
-epr_1 : (Group g) => (a :g) -> times a Group.e = times a (times (inv a) a)
-epr_1 a = cong $ sym $ Group.invProofL a  
-
-epr_2 : (Group g) => (a :g) -> times a (times (inv a) a) = times (times a (inv a)) a
-epr_2 a = sym $ Group.assocProof a (inv a) a
-
-
---epr_3 : (Group g) => (a :g) -> rtimes a (times a (inv a)) = rtimes a Group.e
---epr_3 a = cong $ invProofR a
-
 
 
 {- eIsUnique : (Group g) => (x : g) -> (f : g) -> (times x f = x) -> (f = Group.e)
