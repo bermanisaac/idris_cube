@@ -1,5 +1,7 @@
 import Group
 
+-- scrapped, we're not constructing the canonical Rubik's group anymore
+
 data Turn = I | R | L | U | D | F | B
 
 data CanonRubik = Position (List Turn)
@@ -7,23 +9,49 @@ data CanonRubik = Position (List Turn)
 ptol : CanonRubik -> List Turn
 ptol (Position l) = l
 
+removeI : (List Turn) -> (List Turn)
+remove
+
+-- it seems excessive and verbose, but it's to make it total as confirmed by compiler
 normalize : (List Turn) -> (List Turn)
 normalize [] = []
 normalize (I :: turns) = normalize turns
-normalize (x :: I :: turns) = normalize (x :: turns)
-normalize (x :: y :: I :: turns) = normalize (x :: y :: turns)
-normalize (x :: y :: z :: I :: turns) = normalize (x :: y :: z :: turns)
+
+normalize (R :: I :: R :: R :: R :: turns) = normalize turns
+normalize (L :: I :: L :: L :: L :: turns) = normalize turns
+normalize (U :: I :: U :: U :: U :: turns) = normalize turns
+normalize (D :: I :: D :: D :: D :: turns) = normalize turns
+normalize (F :: I :: F :: F :: F :: turns) = normalize turns
+normalize (B :: I :: B :: B :: B :: turns) = normalize turns
+
+normalize (R :: R :: I :: R :: R :: turns) = normalize turns
+normalize (L :: L :: I :: L :: L :: turns) = normalize turns
+normalize (U :: U :: I :: U :: U :: turns) = normalize turns
+normalize (D :: D :: I :: D :: D :: turns) = normalize turns
+normalize (F :: F :: I :: F :: F :: turns) = normalize turns
+normalize (B :: B :: I :: B :: B :: turns) = normalize turns
+
+normalize (R :: R :: R :: I :: R :: turns) = normalize turns
+normalize (L :: L :: L :: I :: L :: turns) = normalize turns
+normalize (U :: U :: U :: I :: U :: turns) = normalize turns
+normalize (D :: D :: D :: I :: D :: turns) = normalize turns
+normalize (F :: F :: F :: I :: F :: turns) = normalize turns
+normalize (B :: B :: B :: I :: B :: turns) = normalize turns
+
 normalize (R :: R :: R :: R :: turns) = normalize turns
 normalize (L :: L :: L :: L :: turns) = normalize turns
 normalize (U :: U :: U :: U :: turns) = normalize turns
 normalize (D :: D :: D :: D :: turns) = normalize turns
 normalize (F :: F :: F :: F :: turns) = normalize turns
 normalize (B :: B :: B :: B :: turns) = normalize turns
+
 normalize (x :: turns) = (x :: (normalize turns))
 
+-- total
 appendturns : CanonRubik -> CanonRubik -> CanonRubik
 appendturns (Position a) (Position b) = Position (normalize (a ++ b))
 
+-- total
 invturns : (List Turn) -> (List Turn)
 invturns [] = []
 invturns (I :: turns) = invturns turns
