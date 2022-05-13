@@ -1,0 +1,58 @@
+clockwise:
+wbr in wbr -> rwb in wob 
+wob in wob -> obw in ybo
+ybo in ybo -> oyb in yrb
+yrb in yrb -> rby in wbr
+
+0 -> +1
+0 -> -1
+0 -> +1
+0 -> -1
+
+same for all non-(white or yellow) faces
+
+white clockwise: all zeros, all good
+
+all moves preserve corner parity
+
+edge parity:
+
+orient the cube white on top, yellow on top, or (rg) or (go) or (ob) or (br). read the stickers top/bottom. the parity contribution of the edge is the bit "has it been flipped from its canonical orientation".
+
+canonical orientations:
+
+corners:
+1 wbr
+2 wob
+3 wgo
+4 wrg
+5 ygr
+6 yog
+7 ybo
+8 yrb
+
+edges:
+1 wr
+2 wg
+3 wo
+4 wb
+5 yr
+6 yg
+7 yo
+8 yb
+9 rg
+10 go
+11 ob
+12 br
+
+((1234)(567)(8), e) in S_8 + S_12
+= ((12)(23)(34)(56)(67), e), illegal 
+
+
+
+
+
+
+
+
+
