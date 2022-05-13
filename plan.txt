@@ -1,0 +1,43 @@
+
+A cube state is an element of (G := S_12 * S_8 * (Z/2Z)^12 * (Z/3Z)^8) (not necessarily with the group structure brought along).
+
+i.e., a cube state is a permutation on the edges, a permutation on the corners, and some orientation data.
+
+(*) Arbitrary (corner corner) (edge edge) can be realized as a conjugate of the T-perm, and
+arbitrary (edge edge edge) can be realized as a conjugate of the U-perm.
+
+Theorem:
+
+If S is a cube state such that:
+
+a. Edge orientation parity wrt the canonical orientation is 0 (even number of ones in the (Z/2Z)^12 component)
+b. Corner orientation parity wrt the canonical orientation is 0 (0-mod-3 sum of the (Z/3Z)^8 component)
+c. The piece position permutation has a decomposition t_1 ... t_n into transpositions, which is even (as an element of S_20)
+
+then by (*)
+
+there exists a sequence of quarter turns (also elems of G) equal to S.
+
+
+implementation:
+
+type in a string of piece positions
+
+parse it into a cube state
+
+make a three-cycle decomposer for S_12
+
+
+a corner swap is
+
+A' . T-perm . A
+
+where
+
+A = (RDR')^k . (some more Us or Ds) . (R'D'R)^k . (some Us or Ds)
+
+
+
+
+
+ 
