@@ -3,6 +3,7 @@ module PracticalGroup
 import Group
 import Data.Vect
 
+public export
 data EdgeColors = WR |
             WG |
             WO |
@@ -16,6 +17,7 @@ data EdgeColors = WR |
             OB |
             BR
 
+public export
 edgeToNum : EdgeColors -> Nat
 edgeToNum WR = 0
 edgeToNum WG = 1
@@ -30,14 +32,18 @@ edgeToNum GO = 9
 edgeToNum OB = 10
 edgeToNum BR = 11
 
+public export
 Edge : Type
 Edge = Pair EdgeColors Nat
 
+public export
 EdgeState : Type
 EdgeState = Vect 12 Edge
 
+public export
 data CornerColors = WBR | WOB | WGO | WRG | YGR | YOG | YBO | YRB
 
+public export
 cornerToNum : CornerColors -> Nat
 cornerToNum WBR = 0
 cornerToNum WOB = 1
@@ -48,32 +54,38 @@ cornerToNum YOG = 5
 cornerToNum YBO = 6
 cornerToNum YRB = 7
 
+public export
 Corner : Type
 Corner = Pair CornerColors Nat
 
+public export
 CornerState : Type
 CornerState = Vect 8 Corner
 
+public export
 PCube : Type
 PCube = Pair CornerState EdgeState
 
+public export
 edgeContribution : Edge -> Nat
 edgeContribution = snd
 
+public export
 edgeParity : EdgeState -> Nat
 edgeParity = sum . (map edgeContribution)
 
+public export
 cornerContribution : Corner -> Nat
 cornerContribution = snd
 
+public export
 cornerParity : CornerState -> Nat
 cornerParity = sum . (map cornerContribution)
 
+public export
 ParityCheck : Type
-ParityCheck = Pair (Vect 12 Nat) (Vect 8 Nat)
+ParityCheck = Pair (Vect 8 Nat) (Vect 12 Nat)
 
+public export
 toParityCheck : PCube -> ParityCheck
-toParityCheck (corners, edges) = Pair (map cornerToNum corners) (map edgeToNum edges)
-
-R : PCube -> PCube
-R (Pair corners edges) = Pair corners edges
+toParityCheck (corners, edges) = (map (cornerToNum . fst) corners, map (edgeToNum . fst) edges)
