@@ -1,0 +1,38 @@
+In our orientation (U=white, F=red, R=blue), this is how the ordering would work on a solved cube
+ - ufr = up, front, right
+1 ufr = wbr
+2 ubr = wob
+3 ubl = wgo
+4 ufl = wrg
+5 dfl = ygr
+6 dbl = yog
+7 dbr = ybo
+8 dfr = yrb
+
+step-by-step
+
++1 is twisted clockwise 1, +2 is twisted counterclockwise 1
+
+if ufr is +1, RD'R'D RD'R'D U RD'R'D RD'R'D RD'R'D RD'R'D U'
+else if ufr is +2, RD'R'D RD'R'D RD'R'D RD'R'D U RD'R'D RD'R'D U'
+
+if ubr is +1, U RD'R'D RD'R'D U RD'R'D RD'R'D RD'R'D RD'R'D U2
+else if ubr is +2, U RD'R'D RD'R'D RD'R'D RD'R'D U RD'R'D RD'R'D U2
+
+if ubl is +1, U2 RD'R'D RD'R'D U RD'R'D RD'R'D RD'R'D RD'R'D U
+else if ubl is +2, U2 RD'R'D RD'R'D RD'R'D RD'R'D U RD'R'D RD'R'D U
+
+if ufl is +1, U2 L2 U RD'R'D RD'R'D U RD'R'D RD'R'D RD'R'D RD'R'D U2 L2 U2
+else if ufl is +2, U2 L2 U RD'R'D RD'R'D RD'R'D RD'R'D U RD'R'D RD'R'D U2 L2 U2
+
+if dfl is +1, L'U'LU L'U'LU D L'U'LU L'U'LU L'U'LU L'U'LU D'
+else if dfl is +2, L'U'LU L'U'LU L'U'LU L'U'LU D L'U'LU L'U'LU D'
+
+if dbl is +1, D L'U'LU L'U'LU D L'U'LU L'U'LU L'U'LU L'U'LU D2
+else if dbl is +2, D L'U'LU L'U'LU L'U'LU L'U'LU D L'U'LU L'U'LU D2
+
+if dbr is +1, D2 L'U'LU L'U'LU D L'U'LU L'U'LU L'U'LU L'U'LU D
+else if dbr is +2, D2 L'U'LU L'U'LU L'U'LU L'U'LU D L'U'LU L'U'LU D
+
+at each algorithm, the position of every piece is preserved, and by the end, the first seven corners are oriented. 
+if the corner twist parity is 0, then the last corner must also be in a state of 0 parity. otherwise, the cube is unsolvable

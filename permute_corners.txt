@@ -1,0 +1,35 @@
+this assumes the corners are oriented as described in orient_corners.txt
+
+ordering of corners is same as orient_corners.txt
+
+T = T-perm = R U R' U' R' F R2 U' R' U' R U R' F'
+
+if 2 belongs in 1, T
+else if 3 belongs in 1, B R D' R' T R D R' B'
+else if 4 belongs in 1, L R D2 L' R' T R L D2 R' L'
+else if 5 belongs in 1, U' L2 U T U' L2 U2
+else if 6 belongs in 1, B2 T B2
+else if 7 belongs in 1, D B2 T B2 D'
+else if 8 belongs in 1, D2 B2 T B2 D2
+
+if 3 belongs in 2, L' R' D2 R L T L' R' D2 R L
+else if 4 belongs in 2, F' R' D R T R' D' R F
+else if 5 belongs in 2, F2 T F2
+else if 6 belongs in 2, D F2 T F2 D'
+else if 7 belongs in 2, D2 F2 T F2 D2
+else if 8 belongs in 2, D' F2 T F2 D
+
+if 4 belongs in 3, U2 T U2
+else if 5 belongs in 3, D F2 U2 T U2 F2 D'
+else if 6 belongs in 3, D2 F2 U2 T U2 F2 D2
+else if 7 belongs in 3, D' F2 U2 T U2 F2 D
+else if 8 belongs in 3, F2 U2 T U2 F2
+
+if 5 belongs in 4, U2 F2 T F2 U2
+else if 6 belongs in 4, D U2 F2 T F2 U2 D'
+else if 7 belongs in 4, D2 U2 F2 T F2 U2 D2
+else if 8 belongs in 4, D' U2 F2 T F2 U2 D
+
+6 B2 F2 T F2 B2
+7 D B2 D' F2 T F2 D B2 D'
+8 D B2 F2 U2 T U2 F2 B2 D'
