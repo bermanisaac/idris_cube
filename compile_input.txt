@@ -1,0 +1,7 @@
+:l CubeRotations.idr
+
+:t R
+
+R $ solved
+
+R . R . R . R $ solved
