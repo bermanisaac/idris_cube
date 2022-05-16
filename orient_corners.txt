@@ -13,17 +13,17 @@ step-by-step
 
 +1 is twisted clockwise 1, +2 is twisted counterclockwise 1
 
-if ufr is +1, RD'R'D RD'R'D U RD'R'D RD'R'D RD'R'D RD'R'D U'
-else if ufr is +2, RD'R'D RD'R'D RD'R'D RD'R'D U RD'R'D RD'R'D U'
+if ufr is +1, R'D'RD R'D'RD U R'D'RD R'D'RD R'D'RD R'D'RD U'
+else if ufr is +2, R'D'RD R'D'RD R'D'RD R'D'RD U R'D'RD R'D'RD U'
 
-if ubr is +1, U RD'R'D RD'R'D U RD'R'D RD'R'D RD'R'D RD'R'D U2
-else if ubr is +2, U RD'R'D RD'R'D RD'R'D RD'R'D U RD'R'D RD'R'D U2
+if ubr is +1, U R'D'RD R'D'RD U R'D'RD R'D'RD R'D'RD R'D'RD U2
+else if ubr is +2, U R'D'RD R'D'RD R'D'RD R'D'RD U R'D'RD R'D'RD U2
 
-if ubl is +1, U2 RD'R'D RD'R'D U RD'R'D RD'R'D RD'R'D RD'R'D U
-else if ubl is +2, U2 RD'R'D RD'R'D RD'R'D RD'R'D U RD'R'D RD'R'D U
+if ubl is +1, U2 R'D'RD R'D'RD U R'D'RD R'D'RD R'D'RD R'D'RD U
+else if ubl is +2, U2 R'D'RD R'D'RD R'D'RD R'D'RD U R'D'RD R'D'RD U
 
-if ufl is +1, U2 L2 U RD'R'D RD'R'D U RD'R'D RD'R'D RD'R'D RD'R'D U2 L2 U2
-else if ufl is +2, U2 L2 U RD'R'D RD'R'D RD'R'D RD'R'D U RD'R'D RD'R'D U2 L2 U2
+if ufl is +1, U2 L2 U R'D'RD R'D'RD U R'D'RD R'D'RD R'D'RD R'D'RD U2 L2 U2
+else if ufl is +2, U2 L2 U R'D'RD R'D'RD R'D'RD R'D'RD U R'D'RD R'D'RD U2 L2 U2
 
 if dfl is +1, L'U'LU L'U'LU D L'U'LU L'U'LU L'U'LU L'U'LU D'
 else if dfl is +2, L'U'LU L'U'LU L'U'LU L'U'LU D L'U'LU L'U'LU D'
