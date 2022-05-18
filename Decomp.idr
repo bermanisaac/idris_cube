@@ -1,28 +1,6 @@
 module Decomp
 import Data.Vect
 
-
-
-{- decompHelper takes a vector v of n Nats that represents a permutation f such that f(n) = m if m = v[n], and returns its decomposition into transpositions as a list of pairs of Nats. -}
-{- (1 3 5) (6 4 2)
-would be represented by
-
-[3 6 5 2 1 4 7 8]
-
-[3 6 5 2 1 4 7 8] 
-
-so the first transposition is
-
-
-
- 
-and we can recursively compute the decomp of 
-
-
--}
-
-
-
 CCHelper : (n : Nat) -> Fin n -> Fin n -> (Vect n (Fin n)) -> List (Fin n) 
 CCHelper n start cur vec = 
     let next = (index cur vec) in 
@@ -32,7 +10,6 @@ CCHelper n start cur vec =
 {- takes a cycle starting point and a permutation and computes the entire cycle -}
 chewCycle : (n : Nat) -> Fin n -> (Vect n (Fin n)) -> List (Fin n) 
 chewCycle n start vec = (CCHelper n start start vec) 
- 
  
 PTCHelper : (n : Nat) -> (Vect n (Fin n)) -> List (Fin n) -> List (List (Fin n)) 
 PTCHelper n perm [] = []
@@ -49,14 +26,23 @@ cycleToSwaps [] = []
 cycleToSwaps [singleton] = []
 cycleToSwaps (head :: next :: rest) = ((head, next) :: (cycleToSwaps (next :: rest)))
 
-decomp : (Pair (Vect 8 Nat) (Vect 12 Nat)) -> (Pair (List (Pair Nat Nat)) (List (Pair Nat Nat)))
-decomp state = ?todo_decomp 
+permToSwaps : (n : Nat) -> (Vect n (Fin n)) -> List (Pair (Fin n) (Fin n))
+permToSwaps n v = ((foldr (++) []) . (map cycleToSwaps) . (permToCycles n)) v
 
-parity : (Pair (Vect 8 Nat) (Vect 12 Nat)) -> Nat
+decomp : (Pair (Vect 8 (Fin 8)) (Vect 12 (Fin 12))) -> 
+    (Pair (List (Pair (Fin 8) (Fin 8))) (List (Pair (Fin 12) (Fin 12))))
+decomp (corners, edges) = (permToSwaps 8 corners, permToSwaps 12 edges)      
+
+parity : (Pair (Vect 8 (Fin 8)) (Vect 12 (Fin 12))) -> Nat
 parity state = let d = decomp state in ((length $ fst d) + (length $ snd d)) `mod` 2 
 
---Turns a product of 2-cycles into a product of 3-cycles
-two_to_three : (List (Vect 2 Nat)) -> List (Vect 3 Nat)
-two_to_three = ?todo_223
+{- turns a product of 2-cycles into a product of 3-cycles (if possible) -}
+two_to_three : (List (Pair (Fin n) (Fin n))) -> List (Vect 3 (Fin n))
+two_to_three = ?todo_223 
+
+
+
+
+
 
 
