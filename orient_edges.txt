@@ -65,3 +65,29 @@ G = L R' F L' R U2 L R' F L R' B2 U' L' R B2 L R' U' B2
 (5,11): F2 U B G B' U' F2
 (5,12): F2 L' U G U' L F2
 
+(6,7): L2 B2 G B2 L2
+(6,8): R2 U' L2 G L2 U R2
+(6,9): L' U L' G L U' L
+(6,10): L U L G L' U' L'
+(6,11): R' U' L2 G L2 U R 
+(6,12): R U' L2 G L2 U R'
+
+(7,8): D L2 B2 G B2 L2 D'
+(7,9): L' B2 G B2 L'
+(7,10): B' U' B' G B U B 
+(7,11): B U' B G B' U B'
+(7,12): R B2 U' G U B2 R'
+
+(8,9): F R2 U2 G U2 R2 F'
+(8,10): B' R2 U' G U R2 B 
+(8,11): R' U' R' U' G U R U R 
+(8,12): R U' R U' G U R' U R'
+
+(9,10): L' U L2 G L2 U' L 
+(9,11): L' B G B L'
+(9,12): F U F2 U G U' F2 U' F'
+
+(10,11): B' U' B2 G B2 U B
+(10,12): B' R U' G U R' B
+
+(11,12): B R U' G U R' B'
