@@ -30,6 +30,19 @@ else if 6 belongs in 4, D U2 F2 T F2 U2 D'
 else if 7 belongs in 4, D2 U2 F2 T F2 U2 D2
 else if 8 belongs in 4, D' U2 F2 T F2 U2 D
 
-6 B2 F2 T F2 B2
-7 D B2 D' F2 T F2 D B2 D'
-8 D B2 F2 U2 T U2 F2 B2 D'
+if 6 belongs in 5, B2 F2 T F2 B2
+ else if 7 belongs in 5, D B2 D' F2 T F2 D B2 D'
+ else if 8 belongs in 5, D B2 F2 U2 T U2 F2 B2 D'
+
+ if 7 belongs in 6, D F2 B2 T B2 F2 D'
+ else if 8 belongs in 6, B2 D' F2 T F2 D B2
+
+ if 8 belongs in 7, B2 F2 U2 T U2 F2 B2
+
+ at every step, only the two corners are swapped.
+ the two edges swapped are the same two every time, 
+ you always put one corner into the correct slot,
+ after step 1, corner 1 is solved and never touched again
+ after step 7, corners 1-7 are solved, so 8 must be solved.
+
+ once again, the corners must be oriented first
