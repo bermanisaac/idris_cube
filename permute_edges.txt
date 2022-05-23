@@ -1,0 +1,13 @@
+
+Let G = L2 U F' B L2 F B' U L2
+
+(1,2,3) = G
+(1,2,4) = R2 D B2 G B2 D' R2
+(1,2,5) = D2 B2 G B2 D2
+(1,2,6) = D' B2 G B2 D 
+(1,2,7) = B2 G B2
+(1,2,8) = D B2 G B2 D'
+(1,2,9) = U' L' U G U' L U 
+(1,2,10) = B' G B 
+(1,2,11) = U R' U' G U R U'
+(1,2,12) = U2 F' U2 G U2 F U2
