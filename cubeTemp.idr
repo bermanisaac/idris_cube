@@ -1,10 +1,8 @@
 module PracticalGroup
 
-import Group
+--import Group
 import Data.Vect
 import PracticalGroup
-
-%access public export
 
 solvedCorners : CornerState
 solvedCorners = [(WBR, 0),
