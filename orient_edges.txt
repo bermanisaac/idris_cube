@@ -15,6 +15,43 @@ G = L R' F L' R U2 L R' F L R' B2 U' L' R B2 L R' U' B2
 11 ob
 12 br
 
+STRATEGY:
+
+if 1 is flipped, U G U'
+else skip
+
+if 2 is flipped, G 
+else skip 
+
+if 3 is flipped, U' G U 
+else skip
+
+if 4 is flipped, F2 U2 G U2 F2
+else skip
+
+if 5 is flipped, F2 L2 U2 G U2 L2 F2
+else skip
+
+if 6 is flipped, L2 B2 G B2 L2
+else skip
+
+if 7 is flipped, D L2 B2 G B2 L2 D'
+else skip
+
+if 8 is flipped, F R2 U2 G U2 R2 F'
+else skip
+
+if 9 is flipped, L' U L2 G L2 U' L 
+else skip
+
+if 10 is flipped, B' U' B2 G B2 U B
+else skip
+
+if 11 is flipped, B R U' G U R' B'
+else skip
+
+END OF STRATEGY
+
 (1,2): U G U'
 (1,3): F2 U' D2 B2 G B2 D2 U F2
 (1,4): U2 G U2
