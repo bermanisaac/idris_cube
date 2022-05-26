@@ -1,6 +1,6 @@
 module Algs
 
-import Group
+--import Group
 import Data.Vect
 import PracticalGroup
 import CubeRotations

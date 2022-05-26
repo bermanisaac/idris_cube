@@ -1,7 +1,8 @@
 module PracticalGroup
 
-import Group
+--import Group
 import Data.Vect
+import Decomp
 
 public export
 data EdgeColors = WR |
@@ -89,3 +90,7 @@ ParityCheck = Pair (Vect 8 Nat) (Vect 12 Nat)
 public export
 toParityCheck : PCube -> ParityCheck
 toParityCheck (corners, edges) = (map (cornerToNum . fst) corners, map (edgeToNum . fst) edges)
+
+
+
+

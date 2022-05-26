@@ -1,6 +1,6 @@
 module PracticalGroup
 
-import Group
+--import Group
 import Data.Vect
 import PracticalGroup
 
@@ -78,6 +78,9 @@ _F_Edge [(wr, e0),
 F : PCube -> PCube
 F (cs, es) = (_F_Corner cs, _F_Edge es)
 
+F' : PCube -> PCube
+F' = F . F . F
+
 {-corners:
 1 wbr
 2 wob
@@ -146,6 +149,9 @@ _B_Edge [f0,
 
 B : PCube -> PCube
 B (cs, es) = (_B_Corner cs, _B_Edge es)
+
+B' : PCube -> PCube
+B' = B . B . B
 
 {-corners:
 1 wbr
@@ -216,6 +222,9 @@ _R_Edge [f0,
 R : PCube -> PCube
 R (cs, es) = (_R_Corner cs, _R_Edge es)
 
+R' : PCube -> PCube
+R' = R . R . R
+
 {-corners:
 1 wbr
 2 wob
@@ -284,6 +293,9 @@ _L_Edge [f0,
 
 L : PCube -> PCube
 L (cs, es) = (_L_Corner cs, _L_Edge es)
+
+L' : PCube -> PCube
+L' = L . L . L
 
 {-corners:
 1 wbr
@@ -354,6 +366,9 @@ _U_Edge [f0,
 U : PCube -> PCube
 U (cs, es) = (_U_Corner cs, _U_Edge es)
 
+U' : PCube -> PCube
+U' = U . U . U
+
 {-corners:
 1 wbr
 2 wob
@@ -422,3 +437,6 @@ _D_Edge [f0,
 
 D : PCube -> PCube
 D (cs, es) = (_D_Corner cs, _D_Edge es)
+
+D' : PCube -> PCube
+D' = D . D . D
