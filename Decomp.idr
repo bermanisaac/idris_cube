@@ -27,12 +27,16 @@ cycleToSwaps [singleton] = []
 cycleToSwaps (head :: next :: rest) = ((head, next) :: (cycleToSwaps (next :: rest)))
 
 permToSwaps : (n : Nat) -> (Vect n (Fin n)) -> List (Pair (Fin n) (Fin n))
-permToSwaps n v = ((foldr (++) []) . (map cycleToSwaps) . (permToCycles n)) 
+permToSwaps n v = ((foldr (++) []) . (map cycleToSwaps) . (permToCycles n)) v 
 
 {- turns a 3-cycle in S12 into a product of 3-cycles of the form (12n), represented by the relevant n. -}
-reduceThreeCycle : Vect 3 (Fin 12) -> List (Fin 12)
+
+reduceThreeCycle : Vect 3 Int -> List Int
 --one non-{1,2}
 reduceThreeCycle [1, 2, c] = [c]
+reduceThreeCycle x = [] 
+
+{-
 reduceThreeCycle [c, 1, 2] = reduceThreeCycle [1, 2, c] 
 reduceThreeCycle [2, c, 1] = reduceThreeCycle [1, 2, c]
 reduceThreeCycle [2, 1, c] = [c, c]
@@ -50,7 +54,7 @@ reduceThreeCycle [c, 2, b] = reduceThreeCycle [2, b, c]
 
 --three non-{1,2}s
 reduceThreeCycle [a,b,c] = [a, c, b, a, c]
-
+-}
 
 {- turns a product of 2-cycles into a product of 3-cycles (if possible) -}
 two_to_three : (List (Pair (Fin n) (Fin n))) -> Maybe (List (Vect 3 (Fin n)))

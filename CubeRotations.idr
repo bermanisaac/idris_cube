@@ -1,8 +1,8 @@
 module PracticalGroup
 
---import Group
 import Data.Vect
 import PracticalGroup
+import Control.Monad.State 
 
 %access public export
 

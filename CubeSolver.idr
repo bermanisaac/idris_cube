@@ -1,12 +1,11 @@
 module CubeSolver
 
 import Data.Vect
-import PracticalGroup
 import CubeRotations
 import Algs
 import Decomp
-import Control.Monad.State
-
+import PracticalGroup
+import MoveAction
 
 StateHold : Type -> Type
 StateHold = State (Pair PCube String)
@@ -16,6 +15,7 @@ starter = (solved, "")
 
 doMove : (PCube -> PCube) -> String -> StateHold ()
 doMove move descriptor = modify (\(cube, moves) => (move cube, moves ++ " " ++ descriptor))
+
 
 checkerBoard : StateHold ()
 checkerBoard = do
@@ -39,7 +39,7 @@ executeCornerSwap = ?cornerswap
 
 -- does a 3-cycle of edges
 executeEdgeCycle : Vect 3 (Fin 12) -> StateHold ()
-executeEdgeCycle = ?edgecycle   
+executeEdgeCycle =    
 
 --does all the edge and corner cycles in a decomposition of a piece permutation
 executeDecomp : Pair (List (Pair (Fin 8) (Fin 8))) (List (Vect 3 (Fin 12))) -> StateHold ()
