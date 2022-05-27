@@ -2,7 +2,7 @@ module PracticalGroup
 
 import Data.Vect
 import PracticalGroup
-import Control.Monad.State 
+import Control.Monad.State
 
 %access public export
 
@@ -81,6 +81,9 @@ F (cs, es) = (_F_Corner cs, _F_Edge es)
 F' : PCube -> PCube
 F' = F . F . F
 
+F2 : PCube -> PCube
+F2 = F . F
+
 {-corners:
 1 wbr
 2 wob
@@ -152,6 +155,9 @@ B (cs, es) = (_B_Corner cs, _B_Edge es)
 
 B' : PCube -> PCube
 B' = B . B . B
+
+B2 : PCube -> PCube
+B2 = B . B
 
 {-corners:
 1 wbr
@@ -225,6 +231,9 @@ R (cs, es) = (_R_Corner cs, _R_Edge es)
 R' : PCube -> PCube
 R' = R . R . R
 
+R2 : PCube -> PCube
+R2 = R . R
+
 {-corners:
 1 wbr
 2 wob
@@ -296,6 +305,9 @@ L (cs, es) = (_L_Corner cs, _L_Edge es)
 
 L' : PCube -> PCube
 L' = L . L . L
+
+L2 : PCube -> PCube
+L2 = L . L
 
 {-corners:
 1 wbr
@@ -369,6 +381,9 @@ U (cs, es) = (_U_Corner cs, _U_Edge es)
 U' : PCube -> PCube
 U' = U . U . U
 
+U2 : PCube -> PCube
+U2 = U . U
+
 {-corners:
 1 wbr
 2 wob
@@ -440,3 +455,6 @@ D (cs, es) = (_D_Corner cs, _D_Edge es)
 
 D' : PCube -> PCube
 D' = D . D . D
+
+D2 : PCube -> PCube
+D2 = D . D

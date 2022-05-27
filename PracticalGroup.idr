@@ -4,7 +4,9 @@ module PracticalGroup
 import Data.Vect
 import Decomp
 
-public export
+%access public export
+
+
 data EdgeColors = WR |
             WG |
             WO |
@@ -18,7 +20,22 @@ data EdgeColors = WR |
             OB |
             BR
 
-public export
+implementation Eq EdgeColors where
+    WR == WR = True
+    WG == WG = True
+    WO == WO = True
+    WB == WB = True
+    YR == YR = True
+    YG == YG = True
+    YO == YO = True
+    YB == YB = True
+    RG == RG = True
+    GO == GO = True
+    OB == OB = True
+    BR == BR = True
+    _  == _  = False
+
+
 edgeToNum : EdgeColors -> Nat
 edgeToNum WR = 0
 edgeToNum WG = 1
@@ -33,18 +50,29 @@ edgeToNum GO = 9
 edgeToNum OB = 10
 edgeToNum BR = 11
 
-public export
+
 Edge : Type
 Edge = Pair EdgeColors Nat
 
-public export
+
 EdgeState : Type
 EdgeState = Vect 12 Edge
 
-public export
+
 data CornerColors = WBR | WOB | WGO | WRG | YGR | YOG | YBO | YRB
 
-public export
+implementation Eq CornerColors where
+    WBR == WBR = True
+    WOB == WOB = True
+    WGO == WGO = True
+    WRG == WRG = True
+    YGR == YGR = True
+    YOG == YOG = True
+    YBO == YBO = True
+    YRB == YRB = True
+    _   == _   = False
+
+
 cornerToNum : CornerColors -> Nat
 cornerToNum WBR = 0
 cornerToNum WOB = 1
@@ -55,42 +83,75 @@ cornerToNum YOG = 5
 cornerToNum YBO = 6
 cornerToNum YRB = 7
 
-public export
+
 Corner : Type
 Corner = Pair CornerColors Nat
 
-public export
+
 CornerState : Type
 CornerState = Vect 8 Corner
 
-public export
+
 PCube : Type
 PCube = Pair CornerState EdgeState
 
-public export
+
 edgeContribution : Edge -> Nat
 edgeContribution = snd
 
-public export
+
 edgeParity : EdgeState -> Nat
 edgeParity = sum . (map edgeContribution)
 
-public export
+
 cornerContribution : Corner -> Nat
 cornerContribution = snd
 
-public export
+
 cornerParity : CornerState -> Nat
 cornerParity = sum . (map cornerContribution)
 
-public export
+
+disjoint : (n : Nat) -> Z = S n -> Void
+disjoint n p = replace {P = disjointTy} p ()
+    where
+        disjointTy : Nat -> Type
+        disjointTy Z = ()
+        disjointTy (S k) = Void
+
+
+neq0x : (n : Nat) -> 0 = (S n) -> Void
+neq0x n = disjoint n
+
+
+neqx0 : (n : Nat) -> (S n) = 0 -> Void
+neqx0 x p = neq0x x (sym p)
+
+modTwo : Nat -> Nat
+modTwo x = modNatNZ x 2 (neqx0 1)
+
+modThree : Nat -> Nat
+modThree x = modNatNZ x 3 (neqx0 2)
+
+
+inParity : PCube -> Bool
+inParity (cs, es) = let cPar = cornerParity cs in
+    let ePar = edgeParity es in
+        modNatNZ cPar 3 (neqx0 2) == 0 && modNatNZ ePar 2 (neqx0 1) == 0
+
+
 ParityCheck : Type
 ParityCheck = Pair (Vect 8 Nat) (Vect 12 Nat)
 
-public export
+
 toParityCheck : PCube -> ParityCheck
 toParityCheck (corners, edges) = (map (cornerToNum . fst) corners, map (edgeToNum . fst) edges)
 
+data CubeEqual = Ceq PCube
 
+implementation Eq CubeEqual where
+    (Ceq a@(c1, e1)) == (Ceq b@(c2, e2)) = if inParity a && inParity b
+        then map fst c1 == map fst c2 && map fst e1 == map fst e2
+        else False
 
 
