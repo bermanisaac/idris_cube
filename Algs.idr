@@ -183,7 +183,7 @@ T = R ^ U ^ R' ^ U' ^ R' ^ F ^ R2 ^ U' ^ R' ^ U' ^ R ^ U ^ R' ^ F'
 
 --permuteEdges : Int -> Int -> PCube -> PCube
 -- we need to have a case in which permuteEdges matches for n = n and then does Nothing
-getCornerSwap : Int -> Int -> (PCube -> PCube)
+getCornerSwap : Integer -> Integer -> (PCube -> PCube)
 getCornerSwap 1 2 = T
 getCornerSwap 1 3 = B ^ R ^ D' ^ R' ^ T ^ R ^ D ^ R' ^ B'
 getCornerSwap 1 4 = L ^ R ^ D2 ^ L' ^ R' ^ T ^ R ^ L ^ D2 ^ R' ^ L'
@@ -216,7 +216,7 @@ getCornerSwap n m = if n == m
                     then id
                     else getCornerSwap m n
 
-getCornerSwaps : Int -> Int -> String
+getCornerSwaps : Integer -> Integer -> String
 getCornerSwaps 1 2 = "T"
 getCornerSwaps 1 3 = "B R D' R' T R D R' B'"
 getCornerSwaps 1 4 = "L R D2 L' R' T R L D2 R' L'"
@@ -255,7 +255,7 @@ A : PCube -> PCube
 A = L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2
 
 --Maps n to the 3-cycle (1, 2, n)
-getEdgeCycle : Nat -> (PCube -> PCube)
+getEdgeCycle : Integer -> (PCube -> PCube)
 getEdgeCycle 3 = A
 getEdgeCycle 4 = R2 ^ D ^ B2 ^ A ^ B2 ^ D' ^ R2
 getEdgeCycle 5 = D2 ^ B2 ^ A ^ B2 ^ D2
@@ -266,6 +266,18 @@ getEdgeCycle 9 = U' ^ L' ^ U ^ A ^ U' ^ L ^ U
 getEdgeCycle 10 = B' ^ A ^ B
 getEdgeCycle 11 = U ^ R' ^ U' ^ A ^ U ^ R ^ U'
 getEdgeCycle 12 = U2 ^ F' ^ U2 ^ A ^ U2 ^ F ^ U2
+
+getEdgeCycles : Integer -> String
+getEdgeCycles 3 = "L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2"
+getEdgeCycles 4 = "R2 ^ D ^ B2 ^ L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2 ^ B2 ^ D' ^ R2"
+getEdgeCycles 5 = "D2 ^ B2 ^ L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2 ^ B2 ^ D2"
+getEdgeCycles 6 = "D' ^ B2 ^ L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2 ^ B2 ^ D"
+getEdgeCycles 7 = "B2 ^ L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2 ^ B2"
+getEdgeCycles 8 = "D ^ B2 ^ L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2 ^ B2 ^ D'"
+getEdgeCycles 9 = "U' ^ L' ^ U ^ L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2 ^ U' ^ L ^ U"
+getEdgeCycles 10 = "B' ^ L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2 ^ B"
+getEdgeCycles 11 = "U ^ R' ^ U' ^ L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2 ^ U ^ R ^ U'"
+getEdgeCycles 12 = "U2 ^ F' ^ U2 ^ L2 ^ U ^ F' ^ B ^ L2 ^ F ^ B' ^ U ^ L2 ^ U2 ^ F ^ U2"
 
 
 

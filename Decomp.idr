@@ -1,6 +1,8 @@
 module Decomp
 import Data.Vect
 
+%access public export
+
 CCHelper : (n : Nat) -> Fin n -> Fin n -> (Vect n (Fin n)) -> List (Fin n)
 CCHelper n start cur vec =
     let next = (index cur vec) in
@@ -33,19 +35,19 @@ permToSwaps n v = ((foldr (++) []) . (map cycleToSwaps) . (permToCycles n)) v
 
 reduceThreeCycle : Vect 3 Integer -> List Integer
 --one non-{1,2}
-reduceThreeCycle [1, 2, c] = [c]
-reduceThreeCycle [c, 1, 2] = [c]
-reduceThreeCycle [2, c, 1] = [c]
-reduceThreeCycle [2, 1, c] = [c, c]
-reduceThreeCycle [c, 2, 1] = [c, c]
-reduceThreeCycle [1, c, 2] = [c, c]
+reduceThreeCycle [0, 1, c] = [c]
+reduceThreeCycle [c, 0, 1] = [c]
+reduceThreeCycle [1, c, 0] = [c]
+reduceThreeCycle [1, 0, c] = [c, c]
+reduceThreeCycle [c, 1, 0] = [c, c]
+reduceThreeCycle [0, c, 1] = [c, c]
 --two non-{1,2}s
-reduceThreeCycle [1, b, c] = [b, b, c]
-reduceThreeCycle [b, c, 1] = [b, b, c]
-reduceThreeCycle [c, 1, b] = [b, b, c]
-reduceThreeCycle [2, b, c] = [b, c, c]
-reduceThreeCycle [b, c, 2] = [b, c, c]
-reduceThreeCycle [c, 2, b] = [b, c, c]
+reduceThreeCycle [0, b, c] = [b, b, c]
+reduceThreeCycle [b, c, 0] = [b, b, c]
+reduceThreeCycle [c, 0, b] = [b, b, c]
+reduceThreeCycle [1, b, c] = [b, c, c]
+reduceThreeCycle [b, c, 1] = [b, c, c]
+reduceThreeCycle [c, 1, b] = [b, c, c]
 --three non-{1,2}s
 reduceThreeCycle [a,b,c] = [a, c, b, a, c]
 

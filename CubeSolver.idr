@@ -33,23 +33,34 @@ checkerBoard = do
     doMove (B . B) "B2"
 --view with execState checkerBoard starter
 
--- does a 2-cycle of corners
-executeCornerSwap : Pair (Fin 8) (Fin 8) -> StateHold ()
-executeCornerSwap = ?cornerswap
+-- Corner Permutes
 
--- does a 3-cycle of edges
-executeEdgeCycle : Vect 3 (Fin 12) -> StateHold ()
-executeEdgeCycle cycle = map getEdgeCycle (reduceThreeCycle ((map finToInteger) cycle))
+extractMove : (Pair (Fin 8) (Fin 8)) -> StateHold ()
+extractMove (a, b) = doMove (getCornerSwap (finToInteger a) (finToInteger b)) (getCornerSwaps (finToInteger a) (finToInteger b))
 
---does all the edge and corner cycles in a decomposition of a piece permutation
-executeDecomp : Pair (List (Pair (Fin 8) (Fin 8))) (List (Vect 3 (Fin 12))) -> StateHold ()
-executeDecomp (swaps, cycles) = do
-    foldlM (\() => executeCornerSwap) () swaps
-    foldlM (\() => executeEdgeCycle) () cycles
+getSwapsToDo : CornerState -> List (Pair (Fin 8) (Fin 8))
+getSwapsToDo corners = (permToSwaps 8) (map ((restrict 7) . cornerToNum) (map fst corners))
 
---permutes the pieces correctly
-permute : PCube -> StateHold ()
-permute cube = ?perm
+permuteCorners : StateHold ()
+permuteCorners = do
+    ((corners, edges), label) <- get
+    sequence_ $ map extractMove (getSwapsToDo corners)
+
+-- Edge Permutes
+
+extractCycle : Integer -> StateHold ()
+extractCycle n = doMove (getEdgeCycle n) (getEdgeCycles n)
+
+edgesToSwaps : EdgeState -> Vect 12 (Fin 12)
+edgesToSwaps = map ((restrict 11) . edgeToNum . fst)
+
+getCyclesToDo : EdgeState -> List Integer
+getCyclesToDo = (foldr (++) []) . (map reduceThreeCycle) . (map (map finToInteger)) . twoToThree . (permToSwaps 12) . edgesToSwaps
+
+permuteEdges : StateHold ()
+permuteEdges = do
+    ((corners, edges), label) <- get
+    sequence_ $ map extractCycle (getCyclesToDo edges)
 
 -- Edge Orientation
 
@@ -99,21 +110,23 @@ theFin4_3 : Fin 4
 theFin4_3 = 3
 
 defineParity : (Fin 7) -> CornerState -> Fin 3
-defineParity n corners =  restrict 2 (snd (index (weaken n) corners))
+defineParity n corners =  restrict 2 (toIntegerNat . snd $ (index (weaken n) corners))
 
 defineIdx : (Fin 7) -> CornerState -> (Fin 21)
-defineIdx n corners = (n * theFin4_3 + (defineParity n corners))
+defineIdx n corners = restrict 20 ((finToInteger n) * (finToInteger theFin4_3) + (finToInteger (defineParity n corners)))
 
 -- let x = 1; y = 2 in x * y
 
 orientCornersN : (Fin 7) -> StateHold ()
 orientCornersN n = do
     ((corners, edges), label) <- get
-    doMove (index (defineIdx n corners) orientCornerFxns)
-           (index (defineIdx n corners) orientCornerStrings)
+    doMove (index (defineIdx n corners) orientCornerFxns) (index (defineIdx n corners) orientCornerStrings)
     -- should be (Fin (S 6) * Fin (S 3)) + Fin (S 2)
     -- which is the same type as Fin 19 + Fin (S 2)
     -- which is the same type as Fin 21
+
+orientCorners : StateHold ()
+orientCorners = sequence_ $ map orientCornersN [0..6]
 
 -- produces a solution given a cube state
 solve : PCube -> StateHold ()

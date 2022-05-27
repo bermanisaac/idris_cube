@@ -36,7 +36,7 @@ implementation Eq EdgeColors where
     _  == _  = False
 
 
-edgeToNum : EdgeColors -> Nat
+edgeToNum : EdgeColors -> Integer
 edgeToNum WR = 0
 edgeToNum WG = 1
 edgeToNum WO = 2
@@ -73,7 +73,7 @@ implementation Eq CornerColors where
     _   == _   = False
 
 
-cornerToNum : CornerColors -> Nat
+cornerToNum : CornerColors -> Integer
 cornerToNum WBR = 0
 cornerToNum WOB = 1
 cornerToNum WGO = 2
@@ -145,7 +145,7 @@ ParityCheck = Pair (Vect 8 Nat) (Vect 12 Nat)
 
 
 toParityCheck : PCube -> ParityCheck
-toParityCheck (corners, edges) = (map (cornerToNum . fst) corners, map (edgeToNum . fst) edges)
+--toParityCheck (corners, edges) = (map (cornerToNum . fst) corners, map (edgeToNum . fst) edges)
 
 data CubeEqual = Ceq PCube
 
